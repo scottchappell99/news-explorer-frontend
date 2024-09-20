@@ -5,10 +5,14 @@ function About() {
     <aside className="about">
       <h2 className="about-title">About the author</h2>
       <p className="about-text">
-        This block describes the project author. Here you should indicate your
-        name, what you do, and which development technologies you know. You can
-        also talk about your experience with TripleTen, what you learned there,
-        and how you can help potential customers.
+        Scott Chappell is an aspiring full-stack engineer. He has learned HTML,
+        CSS, JavaScript, React, Node.js, and Git. Currently, Scott is an EMT in
+        the New York City 911 system.
+      </p>
+      <p className="about-text">
+        Scott has learned through TripleTen, which is a bootcamp for software
+        development. He has completed a slate of projects for TripleTen, which
+        can be seen at his github, below.
       </p>
     </aside>
   );
