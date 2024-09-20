@@ -7,8 +7,12 @@ function Footer() {
         <p className="footer__copyright">
           © 2024 Supersite, Powered by News API
         </p>
-        <button className="footer__home">Home</button>
-        <button className="footer__tripleten">TripleTen</button>
+        <a href="" className="footer__home">
+          Home
+        </a>
+        <a href="http://www.tripleten.com" className="footer__tripleten">
+          TripleTen
+        </a>
         <a href="http://github.com/scottchappell99" className="footer__link">
           <button className="footer__github"></button>
         </a>

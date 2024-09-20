@@ -27,7 +27,8 @@
   line-height: calc(24 / 18);
   border: none;
   padding: 0 0 0 524px;
-  background-color: transparent;
+  text-decoration: none;
+  color: #000;
 }
 
 .footer__tripleten {
@@ -35,9 +36,9 @@
   font-weight: 400;
   font-size: 18px;
   line-height: calc(24 / 18);
-  border: none;
   padding: 0 0 0 40px;
-  background-color: transparent;
+  text-decoration: none;
+  color: #000;
 }
 
 .footer__link:first-of-type {
@@ -60,6 +61,10 @@
   border: none;
 }
 
+.footer__github:hover {
+  cursor: pointer;
+}
+
 .footer__facebook {
   width: 24px;
   height: 24px;
@@ -67,4 +72,8 @@
   margin: 0;
   background: no-repeat url(../../assets/images/facebook.svg);
   border: none;
+}
+
+.footer__facebook:hover {
+  cursor: pointer;
 }
