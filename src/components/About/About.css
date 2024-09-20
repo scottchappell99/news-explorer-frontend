@@ -1,0 +1,23 @@
+.about {
+  width: 1400px;
+  height: 624px;
+}
+
+.about-title {
+  font-family: "Roboto Slab", Times, serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: calc(46 / 40);
+  width: 600px;
+  height: 46px;
+  margin: 131px 216px 24px 624px;
+}
+
+.about-text {
+  font-family: "Roboto", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: calc(24 / 18);
+  width: 600px;
+  margin: 0 216px 303px 624px;
+}

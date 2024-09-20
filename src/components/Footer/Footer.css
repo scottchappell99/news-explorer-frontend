@@ -1,0 +1,70 @@
+.footer {
+  width: 1440px;
+  height: 80px;
+}
+
+.footer__bottom {
+  display: flex;
+  width: 1440px;
+  height: 80px;
+  align-items: center;
+}
+
+.footer__copyright {
+  font-family: "Roboto", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: calc(22 / 16);
+  color: #b6bcbf;
+  width: 433px;
+  padding-left: 104px;
+}
+
+.footer__home {
+  font-family: "Roboto", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: calc(24 / 18);
+  border: none;
+  padding: 0 0 0 524px;
+  background-color: transparent;
+}
+
+.footer__tripleten {
+  font-family: "Roboto", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: calc(24 / 18);
+  border: none;
+  padding: 0 0 0 40px;
+  background-color: transparent;
+}
+
+.footer__link:first-of-type {
+  margin: 0 0 0 40px;
+}
+
+.footer__link {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin: 0 0 0 24px;
+}
+
+.footer__github {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin: 0;
+  background: no-repeat url(../../assets/images/github.svg);
+  border: none;
+}
+
+.footer__facebook {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin: 0;
+  background: no-repeat url(../../assets/images/facebook.svg);
+  border: none;
+}
