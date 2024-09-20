@@ -35,6 +35,7 @@
   background-color: #2f71e5;
   padding: 0;
   right: 0px;
+  transition: background-color 0.25s linear;
 }
 
 .search__submit:hover {

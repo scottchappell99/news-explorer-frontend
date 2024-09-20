@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import "./Footer.css";
 
 function Footer() {
@@ -7,9 +9,9 @@ function Footer() {
         <p className="footer__copyright">
           © 2024 Supersite, Powered by News API
         </p>
-        <a href="" className="footer__home">
+        <Link to="/" className="footer__home">
           Home
-        </a>
+        </Link>
         <a href="http://www.tripleten.com" className="footer__tripleten">
           TripleTen
         </a>
