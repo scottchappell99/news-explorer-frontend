@@ -22,6 +22,15 @@
   border-bottom: solid 3px #fff;
 }
 
+.navigation__bar_type_saved-news {
+  color: #1a1b22;
+}
+
+.navigation__bar_type_saved-news-active {
+  color: #1a1b22;
+  border-bottom: solid 3px #1a1b22;
+}
+
 .navigation__bar_type_hidden {
   position: absolute;
   visibility: hidden;
@@ -66,4 +75,21 @@
   background: transparent url(../../assets/images/logout.svg);
   background-position: 95% 50%;
   background-repeat: no-repeat;
+}
+
+.navigation__sign-out_type_saved-news {
+  border-color: #1a1b22;
+  color: #1a1b22;
+  background: transparent url(../../assets/images/logout-black.svg);
+  background-position: 95% 50%;
+  background-repeat: no-repeat;
+}
+
+.navigation__sign-out:hover {
+  cursor: pointer;
+}
+
+.navigation__sign-out_type_hidden {
+  visibility: hidden;
+  position: absolute;
 }
