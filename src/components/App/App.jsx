@@ -8,11 +8,11 @@ import SearchBox from "../SearchBox/SearchBox";
 import About from "../About/About";
 import Footer from "../Footer/Footer";
 import Preloader from "../Preloader/Preloader";
+import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import SavedNews from "../SavedNews/SavedNews";
 
 import { AuthContext } from "../../utils/Context/AuthContext";
 import { UserContext } from "../../utils/Context/UserContext";
-import { OnSavedNewsContext } from "../../utils/Context/OnSavedNewsContext";
 
 import "./App.css";
 
@@ -20,22 +20,34 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [userInfo, setUserInfo] = useState({ name: "Scott Chappell" });
   const [isLoading, setIsLoading] = useState(false);
-  const [isOnSavedNews, setIsOnSavedNews] = useState(false);
 
   return (
     <div className="app">
       <AuthContext.Provider value={isLoggedIn}>
         <UserContext.Provider value={userInfo}>
-          <OnSavedNewsContext.Provider value={isOnSavedNews}>
-            <Header Navigation={Navigation} />
-            <Routes>
-              <Route path="/" element={<Main SearchBox={SearchBox} />} />
-              <Route path="/saved-news" element={<SavedNews />} />
-            </Routes>
-            <Preloader isLoading={isLoading} />
-            <About />
-            <Footer />
-          </OnSavedNewsContext.Provider>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Header Navigation={Navigation} />
+                  <Main SearchBox={SearchBox} />
+                </>
+              }
+            />
+            <Route
+              path="/saved-news"
+              element={
+                <>
+                  <SavedNewsHeader Navigation={Navigation} />
+                  <SavedNews />
+                </>
+              }
+            />
+          </Routes>
+          <Preloader isLoading={isLoading} />
+          <About />
+          <Footer />
         </UserContext.Provider>
       </AuthContext.Provider>
     </div>

@@ -1,0 +1,19 @@
+.saved-news-header {
+  width: 1440px;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  border-bottom: 2px solid #d1d2d6;
+  box-sizing: border-box;
+}
+
+.saved-news-header__title {
+  font-family: "Roboto Slab";
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #1a1b22;
+  margin: 0 0 0 104px;
+}

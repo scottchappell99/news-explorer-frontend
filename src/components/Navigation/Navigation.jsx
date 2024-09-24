@@ -3,29 +3,23 @@ import { NavLink } from "react-router-dom";
 
 import { AuthContext } from "../../utils/Context/AuthContext";
 import { UserContext } from "../../utils/Context/UserContext";
-import { OnSavedNewsContext } from "../../utils/Context/OnSavedNewsContext";
 
 import "./Navigation.css";
 
-function Navigation() {
+function Navigation({ savedNews }) {
   const isLoggedIn = useContext(AuthContext);
   const userInfo = useContext(UserContext);
-  const isOnSavedNews = useContext(OnSavedNewsContext);
 
   const homeClassName = ({ isActive }) => {
-    return `navigation__bar ${isActive ? "navigation__bar_type_active" : ""} ${
-      isOnSavedNews ? "navigation__bar_type_saved-news" : ""
-    } ${
-      isOnSavedNews && isActive ? "navigation__bar_type_saved-news-active" : ""
+    return `${savedNews}navigation__bar ${
+      isActive ? `${savedNews}navigation__bar_type_active` : ""
     }`;
   };
 
   const articleClassName = ({ isActive }) => {
-    return `navigation__bar ${isActive ? "navigation__bar_type_active" : ""} ${
-      isLoggedIn ? "" : "navigation__bar_type_hidden"
-    } ${isOnSavedNews ? "navigation__bar_type_saved-news" : ""} ${
-      isOnSavedNews && isActive ? "navigation__bar_type_saved-news-active" : ""
-    }`;
+    return `${savedNews}navigation__bar ${
+      isActive ? `${savedNews}navigation__bar_type_active` : ""
+    } ${isLoggedIn ? "" : "navigation__bar_type_hidden"}`;
   };
 
   return (
@@ -44,9 +38,9 @@ function Navigation() {
         Sign in
       </button>
       <button
-        className={`navigation__sign-out ${
-          !isLoggedIn ? "navigation__sign-out_type_hidden" : ""
-        } ${isOnSavedNews ? "navigation__sign-out_type_saved-news" : ""}`}
+        className={`${savedNews}navigation__sign-out ${
+          !isLoggedIn ? `${savedNews}navigation__sign-out_type_hidden` : ""
+        }`}
       >
         {userInfo.name}
       </button>

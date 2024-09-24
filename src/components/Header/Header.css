@@ -9,10 +9,6 @@
   box-sizing: border-box;
 }
 
-.header_type_saved-news {
-  position: relative;
-}
-
 .header__title {
   font-family: "Roboto Slab", Times, serif;
   font-weight: 700;
@@ -20,10 +16,6 @@
   line-height: calc(24 / 20);
   margin: 0 0 0 104px;
   color: #fff;
-}
-
-.header__title_type_saved-news {
-  color: #1a1b22;
 }
 
 .header__title:hover {
