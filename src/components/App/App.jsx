@@ -21,6 +21,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [userInfo, setUserInfo] = useState({ name: "Scott Chappell" });
   const [isLoading, setIsLoading] = useState(false);
+  const [isRendered, setIsRendered] = useState(true);
 
   return (
     <div className="app">
@@ -47,7 +48,7 @@ function App() {
             />
           </Routes>
           <Preloader isLoading={isLoading} />
-          <NewsCardList />
+          <NewsCardList isRendered={isRendered} />
           <About />
           <Footer />
         </UserContext.Provider>

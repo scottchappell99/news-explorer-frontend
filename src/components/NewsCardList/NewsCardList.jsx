@@ -2,9 +2,11 @@ import NewsCard from "../NewsCard/NewsCard";
 
 import "./NewsCardList.css";
 
-function NewsCardList() {
+function NewsCardList({ isRendered }) {
   return (
-    <section className="news-cards">
+    <section
+      className={`news-cards ${isRendered ? "" : "news-cards_type_hidden"}`}
+    >
       <h2 className="news-cards__title">Search results</h2>
       <ul className="news-cards__list">
         <NewsCard />

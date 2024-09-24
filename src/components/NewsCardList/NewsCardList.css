@@ -3,6 +3,11 @@
   padding: 80px 104px;
 }
 
+.news-cards_type_hidden {
+  position: absolute;
+  visibility: hidden;
+}
+
 .news-cards__title {
   font-family: "Roboto Slab", Times, serif;
   font-weight: 400;
