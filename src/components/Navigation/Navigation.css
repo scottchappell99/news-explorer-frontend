@@ -12,21 +12,25 @@
   line-height: calc(24 / 18);
   color: #b6bcbf;
   margin: 0;
-  padding: 23px 0 20px;
+  padding: 30px 0 0;
   border-bottom: solid 3px transparent;
   text-decoration: none;
+  height: 80px;
+  box-sizing: border-box;
 }
 
 .saved-news-navigation__bar {
   font-family: "Roboto", Arial, sans-serif;
-  font-weight: 500px;
+  font-weight: 500;
   font-size: 18px;
   line-height: calc(24 / 18);
   color: #1a1b22;
   margin: 0;
-  padding: 23px 0 20px;
+  padding: 30px 0 0;
   border-bottom: solid 3px transparent;
   text-decoration: none;
+  height: 80px;
+  box-sizing: border-box;
 }
 
 .navigation__bar_type_active {
