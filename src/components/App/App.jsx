@@ -8,6 +8,7 @@ import SearchBox from "../SearchBox/SearchBox";
 import About from "../About/About";
 import Footer from "../Footer/Footer";
 import Preloader from "../Preloader/Preloader";
+import NewsCardList from "../NewsCardList/NewsCardList";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import SavedNews from "../SavedNews/SavedNews";
 
@@ -46,6 +47,7 @@ function App() {
             />
           </Routes>
           <Preloader isLoading={isLoading} />
+          <NewsCardList />
           <About />
           <Footer />
         </UserContext.Provider>

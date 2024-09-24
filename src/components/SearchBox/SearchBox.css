@@ -14,7 +14,7 @@
   height: 64px;
   z-index: 1;
   position: absolute;
-  border-radius: 50px;
+  border-radius: 100px;
   padding: 0 168px 0 24px;
   border: none;
   overflow: hidden;
@@ -30,7 +30,7 @@
   height: 64px;
   position: absolute;
   z-index: 2;
-  border-radius: 50px;
+  border-radius: 100px;
   border: none;
   background-color: #2f71e5;
   padding: 0;
