@@ -1,4 +1,6 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
+
 import { UserContext } from "../../utils/Context/UserContext";
 
 import "./SavedNewsHeader.css";
@@ -9,7 +11,9 @@ function SavedNewsHeader({ Navigation }) {
   return (
     <header className="saved-news-header">
       <div className="saved-news-header__bar">
-        <h1 className="saved-news-header__title">NewsExplorer</h1>
+        <Link to="/" className="saved-news-header__title">
+          NewsExplorer
+        </Link>
         <Navigation savedNews="saved-news-" />
       </div>
       <div className="saved-news-header__intro">

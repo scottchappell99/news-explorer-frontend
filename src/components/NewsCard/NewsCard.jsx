@@ -9,6 +9,13 @@ function NewsCard() {
   const isLoggedIn = useContext(AuthContext);
   return (
     <li className="news-card">
+      <div className="news-card__keyword news-card__keyword_type_hidden">
+        Nature
+      </div>
+      <button className="news-card__delete news-card__delete_type_hidden" />
+      <div className="news-card__delete-text news-card__delete-text_type_hidden">
+        Remove from saved
+      </div>
       <button
         className={`news-card__sign-in ${
           isLoggedIn ? "news-card__sign-in_type_hidden" : ""

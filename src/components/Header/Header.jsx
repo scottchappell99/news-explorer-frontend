@@ -1,9 +1,12 @@
+import { Link } from "react-router-dom";
 import "./Header.css";
 
 function Header({ Navigation }) {
   return (
     <header className="header">
-      <h1 className="header__title">NewsExplorer</h1>
+      <Link to="/" className="header__title">
+        NewsExplorer
+      </Link>
       <Navigation savedNews="" />
     </header>
   );
