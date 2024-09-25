@@ -10,7 +10,7 @@
 }
 
 .header__title {
-  font-family: "Roboto Slab", Times, serif;
+  font-family: "Roboto Slab", "Times New Roman", serif;
   font-weight: 700;
   font-size: 20px;
   line-height: calc(24 / 20);

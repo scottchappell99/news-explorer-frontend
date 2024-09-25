@@ -1,15 +1,17 @@
 .news-cards {
   background-color: #f5f6f7;
   padding: 80px 104px;
+  overflow: hidden;
 }
 
 .news-cards_type_hidden {
+  display: none;
   position: absolute;
   visibility: hidden;
 }
 
 .news-cards__title {
-  font-family: "Roboto Slab", Times, serif;
+  font-family: "Roboto Slab", "Times New Roman", serif;
   font-weight: 400;
   font-size: 40px;
   line-height: calc(46 / 40);

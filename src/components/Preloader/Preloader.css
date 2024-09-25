@@ -5,6 +5,7 @@
 }
 
 .preloader_type_hidden {
+  display: none;
   position: absolute;
   visibility: hidden;
 }

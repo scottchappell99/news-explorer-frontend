@@ -36,7 +36,7 @@
 }
 
 .saved-news-header__text {
-  font-family: "Roboto Slab", Times, serif;
+  font-family: "Roboto Slab", "Times New Roman", serif;
   font-weight: 400;
   font-size: 40px;
   line-height: calc(46 / 40);

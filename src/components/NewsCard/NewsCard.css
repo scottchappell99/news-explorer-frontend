@@ -63,7 +63,7 @@
 }
 
 .news-card__date {
-  font-family: "Source Sans Pro", Arial, sans-serif;
+  font-family: "Inter", Arial, sans-serif;
   font-weight: 400;
   font-size: 18px;
   line-height: calc(24 / 18);
@@ -72,7 +72,7 @@
 }
 
 .news-card__headline {
-  font-family: "Roboto Slab", Times, serif;
+  font-family: "Roboto Slab", "Times New Roman", serif;
   font-weight: 400;
   font-size: 26px;
   line-height: calc(30 / 26);
