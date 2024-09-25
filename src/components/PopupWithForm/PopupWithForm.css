@@ -1,0 +1,149 @@
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #00000080;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 10;
+  transition: visibility 0.5s, opacity 0.5s linear;
+}
+
+.modal_type_opened {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal__content {
+  position: relative;
+  max-width: 430px;
+  background-color: #fff;
+  border-radius: 16px;
+  width: 100%;
+  border-style: solid;
+  border: 1px;
+  box-sizing: border-box;
+  z-index: 11;
+}
+
+.modal__close {
+  background: no-repeat center url(../../assets/images/modal-close.svg);
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  z-index: 11;
+  opacity: 1;
+  transition: opacity 0.5s linear;
+}
+
+.modal__close:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.modal__content_type_form {
+  padding: 34px 36px 28px;
+}
+
+.modal__title {
+  font-family: "Roboto", Arial, sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: calc(28 / 24);
+  color: #1a1b22;
+  margin: 0;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 100%;
+}
+
+.modal__label {
+  margin: 31px 0 0;
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: calc(14 / 12);
+  color: #2f71e5;
+}
+
+.modal__label:first-of-type {
+  margin: 22px 0 0;
+}
+
+.modal__input {
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: calc(16 / 14);
+  color: #000;
+  height: 33px;
+  border: none;
+  border-bottom: 1px solid #00000033;
+}
+
+.modal__input::placeholder {
+  color: #00000033;
+}
+
+.modal__submit {
+  width: 100%;
+  height: 64px;
+  border-radius: 100px;
+  border: none;
+  margin: 39px 0 0;
+  font-family: "Roboto", Arial, sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: #fff;
+  background-color: #2f71e5;
+  transition: background-color 0.5s linear;
+}
+
+.modal__submit:hover {
+  background-color: #347eff;
+  cursor: pointer;
+}
+
+.modal__submit_type_disabled {
+  color: #b6bcbf;
+  background-color: #e6e8eb;
+}
+
+.modal__text-box {
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: calc(16 / 14);
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  margin: 16px 0 0;
+}
+
+.modal__text {
+  color: #000;
+  margin: 0;
+}
+
+.modal__link {
+  color: #2f71e5;
+  margin: 0;
+  transition: color 0.5s linear;
+}
+
+.modal__link:hover {
+  cursor: pointer;
+  color: #347eff;
+}

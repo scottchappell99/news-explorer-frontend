@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import "./Header.css";
 
-function Header({ Navigation }) {
+function Header({ Navigation, openPopup }) {
   return (
     <header className="header">
       <Link to="/" className="header__title">
         NewsExplorer
       </Link>
-      <Navigation savedNews="" />
+      <Navigation savedNews="" openPopup={openPopup} />
     </header>
   );
 }

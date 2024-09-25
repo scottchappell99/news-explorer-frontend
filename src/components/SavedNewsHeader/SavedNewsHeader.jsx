@@ -5,7 +5,7 @@ import { UserContext } from "../../utils/Context/UserContext";
 
 import "./SavedNewsHeader.css";
 
-function SavedNewsHeader({ Navigation }) {
+function SavedNewsHeader({ Navigation, openPopup }) {
   const userInfo = useContext(UserContext);
 
   return (
@@ -14,7 +14,7 @@ function SavedNewsHeader({ Navigation }) {
         <Link to="/" className="saved-news-header__title">
           NewsExplorer
         </Link>
-        <Navigation savedNews="saved-news-" />
+        <Navigation savedNews="saved-news-" openPopup={openPopup} />
       </div>
       <div className="saved-news-header__intro">
         <h2 className="saved-news-header__saved-articles">Saved articles</h2>

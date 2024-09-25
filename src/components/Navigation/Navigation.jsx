@@ -6,7 +6,7 @@ import { UserContext } from "../../utils/Context/UserContext";
 
 import "./Navigation.css";
 
-function Navigation({ savedNews }) {
+function Navigation({ savedNews, openPopup }) {
   const isLoggedIn = useContext(AuthContext);
   const userInfo = useContext(UserContext);
 
@@ -31,6 +31,7 @@ function Navigation({ savedNews }) {
         Saved articles
       </NavLink>
       <button
+        onClick={openPopup}
         className={`navigation__sign-in ${
           isLoggedIn ? "navigation__sign-in_type_hidden" : ""
         }`}
