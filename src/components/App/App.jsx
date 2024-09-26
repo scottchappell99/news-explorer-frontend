@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
@@ -17,6 +17,7 @@ import SignUpPopup from "../SignUpPopup/SignUpPopup";
 
 import { AuthContext } from "../../utils/Context/AuthContext";
 import { UserContext } from "../../utils/Context/UserContext";
+import { ActivePageContext } from "../../utils/Context/ActivePageContext";
 
 import "./App.css";
 
@@ -27,6 +28,8 @@ function App() {
   const [isEmptySearch, setisEmptySearch] = useState(false);
   const [isCardsRendered, setIsRendered] = useState(false);
   const [activePopup, setActivePopup] = useState("");
+  const [isActivePageMain, setIsActivePageMain] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
     if (!activePopup) return;
@@ -38,6 +41,15 @@ function App() {
       window.removeEventListener("keydown", handleEscPress);
     };
   }, [activePopup]);
+
+  useEffect(() => {
+    if (!location) return;
+    const handleChangeActivePage = () => {
+      location.pathname === "/" && setIsActivePageMain(true);
+      location.pathname === "/saved-news" && setIsActivePageMain(false);
+    };
+    window.addEventListener("click", handleChangeActivePage);
+  }, [location]);
 
   const handleSignIn = () => {
     setActivePopup("sign-in");
@@ -56,52 +68,59 @@ function App() {
     activePopup === "sign-up" && setActivePopup("sign-in");
   };
 
+  const handleActivePageChange = () => {
+    isActivePageMain && setIsActivePageMain(false);
+    !isActivePageMain && setIsActivePageMain(true);
+  };
+
   return (
     <div className="app">
       <AuthContext.Provider value={isLoggedIn}>
         <UserContext.Provider value={userInfo}>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <Header Navigation={Navigation} openPopup={handleSignIn} />
-                  <Main SearchBox={SearchBox} />
-                  <Preloader isLoading={isLoading} />
-                  <NotFound isEmptySearch={isEmptySearch} />
-                  <NewsCardList isCardsRendered={isCardsRendered} />
-                  <About />
-                </>
-              }
+          <ActivePageContext.Provider value={isActivePageMain}>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Header Navigation={Navigation} openPopup={handleSignIn} />
+                    <Main SearchBox={SearchBox} />
+                    <Preloader isLoading={isLoading} />
+                    <NotFound isEmptySearch={isEmptySearch} />
+                    <NewsCardList isCardsRendered={isCardsRendered} />
+                    <About />
+                  </>
+                }
+              />
+              <Route
+                path="/saved-news"
+                element={
+                  <>
+                    <SavedNewsHeader
+                      Navigation={Navigation}
+                      openPopup={handleSignIn}
+                    />
+                    <SavedNews />
+                  </>
+                }
+              />
+            </Routes>
+            <Footer />
+            <SignInPopup
+              activePopup={activePopup}
+              closePopup={closePopup}
+              handleOutsideClick={handleOutsideClick}
+              handleChangePopup={handleChangePopup}
+              isOpen={activePopup === "sign-in"}
             />
-            <Route
-              path="/saved-news"
-              element={
-                <>
-                  <SavedNewsHeader
-                    Navigation={Navigation}
-                    openPopup={handleSignIn}
-                  />
-                  <SavedNews />
-                </>
-              }
+            <SignUpPopup
+              activePopup={activePopup}
+              closePopup={closePopup}
+              handleOutsideClick={handleOutsideClick}
+              handleChangePopup={handleChangePopup}
+              isOpen={activePopup === "sign-up"}
             />
-          </Routes>
-          <Footer />
-          <SignInPopup
-            activePopup={activePopup}
-            closePopup={closePopup}
-            handleOutsideClick={handleOutsideClick}
-            handleChangePopup={handleChangePopup}
-            isOpen={activePopup === "sign-in"}
-          />
-          <SignUpPopup
-            activePopup={activePopup}
-            closePopup={closePopup}
-            handleOutsideClick={handleOutsideClick}
-            handleChangePopup={handleChangePopup}
-            isOpen={activePopup === "sign-up"}
-          />
+          </ActivePageContext.Provider>
         </UserContext.Provider>
       </AuthContext.Provider>
     </div>

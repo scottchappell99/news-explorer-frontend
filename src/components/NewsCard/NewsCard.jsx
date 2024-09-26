@@ -1,19 +1,35 @@
 import { useContext } from "react";
 
 import { AuthContext } from "../../utils/Context/AuthContext";
+import { ActivePageContext } from "../../utils/Context/ActivePageContext";
+
 import testImage from "../../assets/images/testimage.png";
 
 import "./NewsCard.css";
 
 function NewsCard() {
   const isLoggedIn = useContext(AuthContext);
+  const isActivePageMain = useContext(ActivePageContext);
+
   return (
     <li className="news-card">
-      <div className="news-card__keyword news-card__keyword_type_hidden">
+      <div
+        className={`news-card__keyword ${
+          isActivePageMain ? "news-card__keyword_type_hidden" : ""
+        }`}
+      >
         Nature
       </div>
-      <button className="news-card__delete news-card__delete_type_hidden" />
-      <div className="news-card__delete-text news-card__delete-text_type_hidden">
+      <button
+        className={`news-card__delete ${
+          isActivePageMain ? "news-card__delete_type_hidden" : ""
+        }`}
+      />
+      <div
+        className={`news-card__delete-text ${
+          isActivePageMain ? "news-card__delete-text_type_hidden" : ""
+        }`}
+      >
         Remove from saved
       </div>
       <button
@@ -23,7 +39,11 @@ function NewsCard() {
       >
         Sign in to save articles
       </button>
-      <button className="news-card__save" />
+      <button
+        className={`news-card__save ${
+          isActivePageMain ? "" : "news-card__save_type_hidden"
+        }`}
+      />
       <img src={testImage} alt="" className="news-card__image" />
       <p className="news-card__date">August 9th, 2024</p>
       <h3 className="news-card__headline">
