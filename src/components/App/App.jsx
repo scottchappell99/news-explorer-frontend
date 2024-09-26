@@ -22,11 +22,11 @@ import { ActivePageContext } from "../../utils/Context/ActivePageContext";
 import "./App.css";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [userInfo, setUserInfo] = useState({ name: "Scott Chappell" });
   const [isLoading, setIsLoading] = useState(false);
   const [isEmptySearch, setisEmptySearch] = useState(false);
-  const [isCardsRendered, setIsRendered] = useState(false);
+  const [isCardsRendered, setIsRendered] = useState(true);
   const [activePopup, setActivePopup] = useState("");
   const [isActivePageMain, setIsActivePageMain] = useState(true);
   const location = useLocation();
@@ -51,7 +51,7 @@ function App() {
     window.addEventListener("click", handleChangeActivePage);
   }, [location]);
 
-  const handleSignIn = () => {
+  const handleSignInPopup = () => {
     setActivePopup("sign-in");
   };
 
@@ -83,7 +83,10 @@ function App() {
                 path="/"
                 element={
                   <>
-                    <Header Navigation={Navigation} openPopup={handleSignIn} />
+                    <Header
+                      Navigation={Navigation}
+                      openPopup={handleSignInPopup}
+                    />
                     <Main SearchBox={SearchBox} />
                     <Preloader isLoading={isLoading} />
                     <NotFound isEmptySearch={isEmptySearch} />
@@ -98,7 +101,7 @@ function App() {
                   <>
                     <SavedNewsHeader
                       Navigation={Navigation}
-                      openPopup={handleSignIn}
+                      openPopup={handleSignInPopup}
                     />
                     <SavedNews />
                   </>

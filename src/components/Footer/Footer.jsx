@@ -5,10 +5,8 @@ import "./Footer.css";
 function Footer() {
   return (
     <footer className="footer">
-      <div className="footer__bottom">
-        <p className="footer__copyright">
-          © 2024 Supersite, Powered by News API
-        </p>
+      <p className="footer__copyright">© 2024 Supersite, Powered by News API</p>
+      <div className="footer__box">
         <Link to="/" className="footer__home">
           Home
         </Link>

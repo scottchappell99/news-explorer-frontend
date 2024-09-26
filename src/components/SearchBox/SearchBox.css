@@ -42,3 +42,22 @@
   cursor: pointer;
   background-color: #347eff;
 }
+
+@media screen and (max-width: 768px) {
+  .search {
+    width: 452px;
+    height: 56px;
+    margin: 48px auto 0;
+  }
+
+  .search__bar {
+    width: 428px;
+    height: 56px;
+    padding: 0 0 0 24px;
+  }
+
+  .search__submit {
+    width: 160px;
+    height: 56px;
+  }
+}
