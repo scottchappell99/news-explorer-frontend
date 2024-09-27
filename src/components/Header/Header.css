@@ -24,12 +24,24 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) and (min-width: 768px) {
   .header {
     height: 66px;
   }
 
   .header__title {
     margin: 0 0 0 40px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header {
+    height: 56px;
+  }
+
+  .header__title {
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0 0 0 16px;
   }
 }

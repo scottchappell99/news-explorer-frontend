@@ -10,11 +10,20 @@
   background-color: #f5f6f7;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) and (min-width: 768px) {
   .saved__news {
-    grid-template-columns: repeat(3, 224px);
+    grid-template-columns: repeat(3, 29.2vw);
     grid-template-rows: 420px;
     gap: 8px;
     padding: 32px 40px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .saved__news {
+    grid-template-columns: 90vw;
+    grid-template-rows: 440px;
+    gap: 10px;
+    padding: 24px 16px 13px;
   }
 }

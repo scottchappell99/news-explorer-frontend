@@ -5,7 +5,12 @@ import { UserContext } from "../../utils/Context/UserContext";
 
 import "./SavedNewsHeader.css";
 
-function SavedNewsHeader({ Navigation, openPopup }) {
+function SavedNewsHeader({
+  Navigation,
+  openPopup,
+  handleHamburgerMenuClick,
+  isHamburgerMenuActive,
+}) {
   const userInfo = useContext(UserContext);
 
   return (
@@ -14,7 +19,12 @@ function SavedNewsHeader({ Navigation, openPopup }) {
         <Link to="/" className="saved-news-header__title">
           NewsExplorer
         </Link>
-        <Navigation savedNews="saved-news-" openPopup={openPopup} />
+        <Navigation
+          savedNews="saved-news-"
+          openPopup={openPopup}
+          handleHamburgerMenuClick={handleHamburgerMenuClick}
+          isHamburgerMenuActive={isHamburgerMenuActive}
+        />
       </div>
       <div className="saved-news-header__intro">
         <h2 className="saved-news-header__saved-articles">Saved articles</h2>

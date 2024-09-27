@@ -55,7 +55,7 @@
   }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1000px) and (min-width: 768px) {
   .about__image {
     position: absolute;
     top: 61px;
@@ -65,5 +65,29 @@
   .about__text {
     width: 424px;
     margin-left: 304px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .about {
+    height: 752px;
+  }
+
+  .about__image {
+    position: static;
+    width: 272px;
+    height: 272px;
+    margin: 32px auto 0;
+    display: block;
+  }
+
+  .about__title {
+    width: 288px;
+    margin: 24px auto 0;
+  }
+
+  .about__text {
+    width: 288px;
+    margin: 16px;
   }
 }

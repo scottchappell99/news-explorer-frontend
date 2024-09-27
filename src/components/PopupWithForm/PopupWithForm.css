@@ -147,3 +147,22 @@
   cursor: pointer;
   color: #347eff;
 }
+
+@media screen and (max-width: 767px) {
+  .modal {
+    background-color: #000000a0;
+  }
+
+  .modal__content {
+    position: absolute;
+    height: 100vh;
+    top: 56px;
+  }
+
+  .modal__close {
+    width: 24px;
+    height: 24px;
+    top: -40px;
+    right: 16px;
+  }
+}

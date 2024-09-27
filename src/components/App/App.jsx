@@ -22,13 +22,14 @@ import { ActivePageContext } from "../../utils/Context/ActivePageContext";
 import "./App.css";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState({ name: "Scott Chappell" });
   const [isLoading, setIsLoading] = useState(false);
   const [isEmptySearch, setisEmptySearch] = useState(false);
   const [isCardsRendered, setIsRendered] = useState(true);
   const [activePopup, setActivePopup] = useState("");
   const [isActivePageMain, setIsActivePageMain] = useState(true);
+  const [isHamburgerMenuActive, setIsHamburgerMenuActive] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -52,6 +53,7 @@ function App() {
   }, [location]);
 
   const handleSignInPopup = () => {
+    setIsHamburgerMenuActive(false);
     setActivePopup("sign-in");
   };
 
@@ -73,6 +75,10 @@ function App() {
     !isActivePageMain && setIsActivePageMain(true);
   };
 
+  const handleHamburgerMenuClick = () => {
+    setIsHamburgerMenuActive(!isHamburgerMenuActive);
+  };
+
   return (
     <div className="app">
       <AuthContext.Provider value={isLoggedIn}>
@@ -86,6 +92,8 @@ function App() {
                     <Header
                       Navigation={Navigation}
                       openPopup={handleSignInPopup}
+                      handleHamburgerMenuClick={handleHamburgerMenuClick}
+                      isHamburgerMenuActive={isHamburgerMenuActive}
                     />
                     <Main SearchBox={SearchBox} />
                     <Preloader isLoading={isLoading} />
@@ -102,6 +110,8 @@ function App() {
                     <SavedNewsHeader
                       Navigation={Navigation}
                       openPopup={handleSignInPopup}
+                      handleHamburgerMenuClick={handleHamburgerMenuClick}
+                      isHamburgerMenuActive={isHamburgerMenuActive}
                     />
                     <SavedNews />
                   </>
