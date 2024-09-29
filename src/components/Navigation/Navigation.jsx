@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 
-import { AuthContext } from "../../utils/Context/AuthContext";
-import { UserContext } from "../../utils/Context/UserContext";
+import { AuthContext } from "../../context/AuthContext";
+import { UserContext } from "../../context/UserContext";
 
 import "./Navigation.css";
 
@@ -11,6 +11,7 @@ function Navigation({
   openPopup,
   handleHamburgerMenuClick,
   isHamburgerMenuActive,
+  handleLogOutClick,
 }) {
   const isLoggedIn = useContext(AuthContext);
   const userInfo = useContext(UserContext);
@@ -48,6 +49,7 @@ function Navigation({
         Sign in
       </button>
       <button
+        onClick={handleLogOutClick}
         className={`${savedNews}navigation__sign-out ${
           !isLoggedIn ? `${savedNews}navigation__sign-out_type_hidden` : ""
         }`}
@@ -86,6 +88,7 @@ function Navigation({
           Sign in
         </button>
         <button
+          onClick={handleLogOutClick}
           className={`hamburger-menu__sign-out ${
             !isLoggedIn ? "hamburger-menu__sign-out_type_hidden" : ""
           }`}

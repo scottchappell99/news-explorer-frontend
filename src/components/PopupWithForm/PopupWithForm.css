@@ -69,7 +69,7 @@
 }
 
 .modal__label {
-  margin: 31px 0 0;
+  margin: 13px 0 0;
   font-family: "Inter", Arial, sans-serif;
   font-weight: 400;
   font-size: 12px;
@@ -96,6 +96,16 @@
   color: #00000033;
 }
 
+.modal__error {
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: calc(14.52 / 12);
+  color: #ff0000;
+  margin: 3px 0 0;
+  height: 14px;
+}
+
 .modal__submit {
   width: 100%;
   height: 64px;
@@ -116,7 +126,7 @@
   cursor: pointer;
 }
 
-.modal__submit_type_disabled {
+.modal__submit:disabled {
   color: #b6bcbf;
   background-color: #e6e8eb;
 }

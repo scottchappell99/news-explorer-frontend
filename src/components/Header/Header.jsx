@@ -6,6 +6,7 @@ function Header({
   openPopup,
   handleHamburgerMenuClick,
   isHamburgerMenuActive,
+  handleLogOutClick,
 }) {
   return (
     <header className="header">
@@ -17,6 +18,7 @@ function Header({
         openPopup={openPopup}
         handleHamburgerMenuClick={handleHamburgerMenuClick}
         isHamburgerMenuActive={isHamburgerMenuActive}
+        handleLogOutClick={handleLogOutClick}
       />
     </header>
   );

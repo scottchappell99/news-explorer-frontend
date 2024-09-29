@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
-import { AuthContext } from "../../utils/Context/AuthContext";
-import { ActivePageContext } from "../../utils/Context/ActivePageContext";
+import { AuthContext } from "../../context/AuthContext";
+import { ActivePageContext } from "../../context/ActivePageContext";
 
 import testImage from "../../assets/images/testimage.png";
 

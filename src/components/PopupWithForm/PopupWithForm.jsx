@@ -9,7 +9,9 @@ function PopupWithForm({
   closePopup,
   handleOutsideClick,
   handleChangePopup,
+  handleSubmit,
   isOpen,
+  isValid,
 }) {
   return (
     <div
@@ -20,9 +22,11 @@ function PopupWithForm({
       <div className="modal__content modal__content_type_form">
         <div onClick={closePopup} className="modal__close" />
         <h2 className="modal__title">{title}</h2>
-        <form className="modal__form">
+        <form className="modal__form" onSubmit={handleSubmit}>
           {children}
-          <button className="modal__submit">{buttonText}</button>
+          <button type="submit" className="modal__submit" disabled={!isValid}>
+            {buttonText}
+          </button>
           <div className="modal__text-box">
             <p className="modal__text">or</p>
             <p onClick={handleChangePopup} className="modal__link">

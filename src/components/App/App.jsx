@@ -14,22 +14,25 @@ import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import SavedNews from "../SavedNews/SavedNews";
 import SignInPopup from "../SignInPopup/SignInPopup";
 import SignUpPopup from "../SignUpPopup/SignUpPopup";
+import { registerUser, logInUser, getUserInfo } from "../../utils/auth";
 
-import { AuthContext } from "../../utils/Context/AuthContext";
-import { UserContext } from "../../utils/Context/UserContext";
-import { ActivePageContext } from "../../utils/Context/ActivePageContext";
+import { AuthContext } from "../../context/AuthContext";
+import { UserContext } from "../../context/UserContext";
+import { ActivePageContext } from "../../context/ActivePageContext";
 
 import "./App.css";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userInfo, setUserInfo] = useState({ name: "Scott Chappell" });
+  const [userInfo, setUserInfo] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isEmptySearch, setisEmptySearch] = useState(false);
-  const [isCardsRendered, setIsRendered] = useState(true);
+  const [isCardsRendered, setIsRendered] = useState(false);
   const [activePopup, setActivePopup] = useState("");
   const [isActivePageMain, setIsActivePageMain] = useState(true);
   const [isHamburgerMenuActive, setIsHamburgerMenuActive] = useState(false);
+  const [isPopupLoading, setIsPopupLoading] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -79,6 +82,50 @@ function App() {
     setIsHamburgerMenuActive(!isHamburgerMenuActive);
   };
 
+  const handleRegistration = (values, resetForm) => {
+    setIsPopupLoading(true);
+    registerUser(values)
+      .then(() => {
+        logInUser(values).then((data) => {
+          if (data.token) {
+            // setToken(data.token);
+            getUserInfo(data.token).then((user) => {
+              setUserInfo(user.data);
+              setIsLoggedIn(true);
+            });
+          }
+        });
+      })
+      .then(closePopup)
+      .then(resetForm)
+      .catch(console.error)
+      .finally(() => setIsPopupLoading(false));
+  };
+
+  const handleLogIn = (values, resetForm) => {
+    setIsPopupLoading(true);
+    logInUser(values)
+      .then((data) => {
+        if (data.token) {
+          // setToken(data.token);
+          getUserInfo(data.token).then((user) => {
+            setUserInfo(user.data);
+            setIsLoggedIn(true);
+          });
+        }
+      })
+      .then(closePopup)
+      .then(resetForm)
+      .catch(console.error)
+      .finally(() => setIsPopupLoading(false));
+  };
+
+  const handleLogOutClick = () => {
+    setIsLoggedIn(false);
+    setUserInfo({});
+    // deleteToken();
+  };
+
   return (
     <div className="app">
       <AuthContext.Provider value={isLoggedIn}>
@@ -94,6 +141,7 @@ function App() {
                       openPopup={handleSignInPopup}
                       handleHamburgerMenuClick={handleHamburgerMenuClick}
                       isHamburgerMenuActive={isHamburgerMenuActive}
+                      handleLogOutClick={handleLogOutClick}
                     />
                     <Main SearchBox={SearchBox} />
                     <Preloader isLoading={isLoading} />
@@ -106,15 +154,18 @@ function App() {
               <Route
                 path="/saved-news"
                 element={
-                  <>
-                    <SavedNewsHeader
-                      Navigation={Navigation}
-                      openPopup={handleSignInPopup}
-                      handleHamburgerMenuClick={handleHamburgerMenuClick}
-                      isHamburgerMenuActive={isHamburgerMenuActive}
-                    />
-                    <SavedNews />
-                  </>
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                    <>
+                      <SavedNewsHeader
+                        Navigation={Navigation}
+                        openPopup={handleSignInPopup}
+                        handleHamburgerMenuClick={handleHamburgerMenuClick}
+                        isHamburgerMenuActive={isHamburgerMenuActive}
+                        handleLogOutClick={handleLogOutClick}
+                      />
+                      <SavedNews />
+                    </>
+                  </ProtectedRoute>
                 }
               />
             </Routes>
@@ -125,6 +176,8 @@ function App() {
               handleOutsideClick={handleOutsideClick}
               handleChangePopup={handleChangePopup}
               isOpen={activePopup === "sign-in"}
+              isPopupLoading={isPopupLoading}
+              handleLogIn={handleLogIn}
             />
             <SignUpPopup
               activePopup={activePopup}
@@ -132,6 +185,8 @@ function App() {
               handleOutsideClick={handleOutsideClick}
               handleChangePopup={handleChangePopup}
               isOpen={activePopup === "sign-up"}
+              isPopupLoading={isPopupLoading}
+              handleRegistration={handleRegistration}
             />
           </ActivePageContext.Provider>
         </UserContext.Provider>

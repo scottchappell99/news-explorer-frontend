@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
-import { UserContext } from "../../utils/Context/UserContext";
+import { UserContext } from "../../context/UserContext";
 
 import "./SavedNewsHeader.css";
 
@@ -10,6 +10,7 @@ function SavedNewsHeader({
   openPopup,
   handleHamburgerMenuClick,
   isHamburgerMenuActive,
+  handleLogOutClick,
 }) {
   const userInfo = useContext(UserContext);
 
@@ -24,6 +25,7 @@ function SavedNewsHeader({
           openPopup={openPopup}
           handleHamburgerMenuClick={handleHamburgerMenuClick}
           isHamburgerMenuActive={isHamburgerMenuActive}
+          handleLogOutClick={handleLogOutClick}
         />
       </div>
       <div className="saved-news-header__intro">
