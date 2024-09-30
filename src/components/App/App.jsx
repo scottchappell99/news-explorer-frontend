@@ -14,6 +14,7 @@ import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import SavedNews from "../SavedNews/SavedNews";
 import SignInPopup from "../SignInPopup/SignInPopup";
 import SignUpPopup from "../SignUpPopup/SignUpPopup";
+import SuccessPopup from "../SuccessPopup/SuccessPopup";
 import { registerUser, logInUser, getUserInfo } from "../../utils/auth";
 
 import { AuthContext } from "../../context/AuthContext";
@@ -60,6 +61,10 @@ function App() {
     setActivePopup("sign-in");
   };
 
+  const openSuccessPopup = () => {
+    setActivePopup("success");
+  };
+
   const closePopup = () => {
     setActivePopup("");
   };
@@ -71,6 +76,7 @@ function App() {
   const handleChangePopup = () => {
     activePopup === "sign-in" && setActivePopup("sign-up");
     activePopup === "sign-up" && setActivePopup("sign-in");
+    activePopup === "success" && setActivePopup("sign-in");
   };
 
   const handleActivePageChange = () => {
@@ -85,21 +91,13 @@ function App() {
   const handleRegistration = (values, resetForm) => {
     setIsPopupLoading(true);
     registerUser(values)
-      .then(() => {
-        logInUser(values).then((data) => {
-          if (data.token) {
-            // setToken(data.token);
-            getUserInfo(data.token).then((user) => {
-              setUserInfo(user.data);
-              setIsLoggedIn(true);
-            });
-          }
-        });
-      })
       .then(closePopup)
       .then(resetForm)
       .catch(console.error)
-      .finally(() => setIsPopupLoading(false));
+      .finally(() => {
+        setIsPopupLoading(false);
+        openSuccessPopup();
+      });
   };
 
   const handleLogIn = (values, resetForm) => {
@@ -187,6 +185,13 @@ function App() {
               isOpen={activePopup === "sign-up"}
               isPopupLoading={isPopupLoading}
               handleRegistration={handleRegistration}
+            />
+            <SuccessPopup
+              activePopup={activePopup}
+              closePopup={closePopup}
+              handleOutsideClick={handleOutsideClick}
+              handleChangePopup={handleChangePopup}
+              isOpen={activePopup === "success"}
             />
           </ActivePageContext.Provider>
         </UserContext.Provider>
