@@ -1,15 +1,37 @@
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 import "./SearchBox.css";
 
-function SearchBox() {
+function SearchBox({ handleSearchKeywords }) {
+  const { values, handleChange, errors, isValid, resetForm } =
+    useFormAndValidation();
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    const reset = () => {
+      resetForm({
+        search: "",
+      });
+    };
+    handleSearchKeywords(values, reset);
+  };
+
   return (
-    <form className="search">
+    <form className="search" onSubmit={handleSubmit}>
       <input
         className="search__bar"
-        id="search"
         type="text"
-        placeholder="Enter topic"
+        name="search"
+        value={values.search || ""}
+        id="search"
+        placeholder={`${
+          values.search === "" ? "Please enter a keyword" : "Enter topic"
+        }`}
+        onChange={handleChange}
+        required
       />
-      <button className="search__submit">Search</button>
+      <button type="submit" className="search__submit" disabled={!isValid}>
+        Search
+      </button>
     </form>
   );
 }

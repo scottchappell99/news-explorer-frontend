@@ -1,7 +1,7 @@
 .news-cards {
-  max-width: fit-content;
+  max-width: 100%;
   background-color: #f5f6f7;
-  padding: 80px 104px;
+  padding: 80px 0;
 }
 
 .news-cards_type_hidden {
@@ -11,23 +11,24 @@
 }
 
 .news-cards__title {
+  max-width: 1232px;
   font-family: "Roboto Slab", "Times New Roman", serif;
   font-weight: 400;
   font-size: 40px;
   line-height: calc(46 / 40);
   color: #1a1b22;
-  margin: 0;
+  margin: 0 auto;
   padding-bottom: 64px;
 }
 
 .news-cards__list {
-  max-width: fit-content;
+  max-width: 1232px;
   display: grid;
   list-style-type: none;
-  grid-template-columns: repeat(3, 32.47%);
+  grid-template-columns: repeat(3, 400px);
   grid-template-rows: 576px;
   gap: 16px;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
 }
 
@@ -52,20 +53,37 @@
   background-color: #e8e8e8;
 }
 
-@media screen and (max-width: 1000px) and (min-width: 768px) {
+.news-cards__show-more_type_hidden {
+  display: none;
+}
+
+@media screen and (max-width: 1279px) and (min-width: 1000px) {
+  .news-cards__title {
+    max-width: 846px;
+  }
+
+  .news-cards__list {
+    max-width: 846px;
+    grid-template-columns: repeat(2, 400px);
+  }
+}
+
+@media screen and (max-width: 999px) and (min-width: 768px) {
   .news-cards {
     max-width: 100%;
-    padding: 40px;
+    padding: 40px 0;
   }
 
   .news-cards__title {
+    max-width: 688px;
     font-size: 30px;
     line-height: calc(34 / 30);
     padding-bottom: 32px;
   }
 
   .news-cards__list {
-    grid-template-columns: repeat(3, 29.2vw);
+    max-width: 688px;
+    grid-template-columns: repeat(3, 224px);
     grid-template-rows: 420px;
     gap: 8px;
     margin: 0 auto;
@@ -81,10 +99,11 @@
 @media screen and (max-width: 767px) {
   .news-cards {
     max-width: 100%;
-    padding: 32px 16px 24px;
+    padding: 32px 0 24px;
   }
 
   .news-cards__title {
+    width: 288px;
     font-size: 30px;
     line-height: calc(34 / 30);
     margin-bottom: 58px;
@@ -92,14 +111,16 @@
   }
 
   .news-cards__list {
-    grid-template-columns: 90vw;
+    width: 288px;
+    grid-template-columns: 288px;
     grid-template-rows: 440px;
     gap: 10px;
+    margin: 0 auto;
   }
 
   .news-cards__show-more {
     width: 288px;
     height: 56px;
-    margin: 16px 0 0;
+    margin: 16px auto 0;
   }
 }

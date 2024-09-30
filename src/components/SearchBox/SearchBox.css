@@ -38,6 +38,10 @@
   transition: background-color 0.25s linear;
 }
 
+.search__submit:disabled {
+  background-color: #e6e8eb;
+}
+
 .search__submit:hover {
   cursor: pointer;
   background-color: #347eff;

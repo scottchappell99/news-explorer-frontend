@@ -2,7 +2,14 @@ import NewsCard from "../NewsCard/NewsCard";
 
 import "./NewsCardList.css";
 
-function NewsCardList({ isCardsRendered }) {
+function NewsCardList({
+  isCardsRendered,
+  newsData,
+  cardsShown,
+  handleShowMoreClick,
+}) {
+  const newsCardLength = newsData.length - 1;
+
   return (
     <section
       className={`news-cards ${
@@ -11,12 +18,19 @@ function NewsCardList({ isCardsRendered }) {
     >
       <h2 className="news-cards__title">Search results</h2>
       <ul className="news-cards__list">
-        <NewsCard />
-        <NewsCard />
-        <NewsCard />
-        <NewsCard />
+        {newsData.slice(0, cardsShown).map((item, index) => {
+          return <NewsCard key={index} item={item} />;
+        })}
       </ul>
-      <button className="news-cards__show-more">Show more</button>
+      <button
+        type="button"
+        onClick={handleShowMoreClick}
+        className={`news-cards__show-more ${
+          newsCardLength > cardsShown ? "" : "news-cards__show-more_type_hidden"
+        }`}
+      >
+        Show more
+      </button>
     </section>
   );
 }

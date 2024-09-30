@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, json } from "react-router-dom";
 
+import { newsAPIKey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import Main from "../Main/Main";
@@ -16,6 +17,7 @@ import SignInPopup from "../SignInPopup/SignInPopup";
 import SignUpPopup from "../SignUpPopup/SignUpPopup";
 import SuccessPopup from "../SuccessPopup/SuccessPopup";
 import { registerUser, logInUser, getUserInfo } from "../../utils/auth";
+import { getNews, filterNews } from "../../utils/newsApi";
 
 import { AuthContext } from "../../context/AuthContext";
 import { UserContext } from "../../context/UserContext";
@@ -28,12 +30,15 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [isEmptySearch, setisEmptySearch] = useState(false);
-  const [isCardsRendered, setIsRendered] = useState(false);
+  const [isEmptySearch, setIsEmptySearch] = useState(false);
+  const [isCardsRendered, setIsCardsRendered] = useState(false);
   const [activePopup, setActivePopup] = useState("");
   const [isActivePageMain, setIsActivePageMain] = useState(true);
   const [isHamburgerMenuActive, setIsHamburgerMenuActive] = useState(false);
   const [isPopupLoading, setIsPopupLoading] = useState(false);
+  const [newsData, setNewsData] = useState([]);
+  const [cardsShown, setCardsShown] = useState(3);
+  const [errorMessage, setErrorMessage] = useState("");
   const location = useLocation();
 
   useEffect(() => {
@@ -79,10 +84,10 @@ function App() {
     activePopup === "success" && setActivePopup("sign-in");
   };
 
-  const handleActivePageChange = () => {
-    isActivePageMain && setIsActivePageMain(false);
-    !isActivePageMain && setIsActivePageMain(true);
-  };
+  // const handleActivePageChange = () => {
+  //   isActivePageMain && setIsActivePageMain(false);
+  //   !isActivePageMain && setIsActivePageMain(true);
+  // };
 
   const handleHamburgerMenuClick = () => {
     setIsHamburgerMenuActive(!isHamburgerMenuActive);
@@ -124,6 +129,30 @@ function App() {
     // deleteToken();
   };
 
+  const handleSearchKeywords = (values, resetForm) => {
+    setIsLoading(true);
+    setIsCardsRendered(false);
+    setIsEmptySearch(false);
+    getNews(values.search, newsAPIKey)
+      .then((rawData) => filterNews(rawData))
+      .then((news) => setNewsData(news))
+      .then(() => {
+        setIsCardsRendered(true);
+        setIsEmptySearch(false);
+      })
+      .catch((err) => {
+        console.error;
+        setIsEmptySearch(true);
+        setIsCardsRendered(false);
+        setErrorMessage(err);
+      })
+      .finally(() => setIsLoading(false));
+  };
+
+  const handleShowMoreClick = () => {
+    setCardsShown(cardsShown + 3);
+  };
+
   return (
     <div className="app">
       <AuthContext.Provider value={isLoggedIn}>
@@ -141,10 +170,21 @@ function App() {
                       isHamburgerMenuActive={isHamburgerMenuActive}
                       handleLogOutClick={handleLogOutClick}
                     />
-                    <Main SearchBox={SearchBox} />
+                    <Main
+                      SearchBox={SearchBox}
+                      handleSearchKeywords={handleSearchKeywords}
+                    />
                     <Preloader isLoading={isLoading} />
-                    <NotFound isEmptySearch={isEmptySearch} />
-                    <NewsCardList isCardsRendered={isCardsRendered} />
+                    <NotFound
+                      isEmptySearch={isEmptySearch}
+                      errorMessage={errorMessage}
+                    />
+                    <NewsCardList
+                      isCardsRendered={isCardsRendered}
+                      newsData={newsData}
+                      cardsShown={cardsShown}
+                      handleShowMoreClick={handleShowMoreClick}
+                    />
                     <About />
                   </>
                 }
