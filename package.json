@@ -1,6 +1,6 @@
 {
   "name": "news-explorer-frontend",
-  "homepage": "https://scottchappell99.github.io/news-explorer-frontend",
+  "homepage": "https://news-explorer.punked.us",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,8 +9,7 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run build && scp -r ./dist/* scott_chappell99@scottchappell.punked.us:/home/scott_chappell99/news-explorer-frontend"
   },
   "dependencies": {
     "react": "^18.3.1",
