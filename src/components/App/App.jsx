@@ -199,7 +199,7 @@ function App() {
           <ActivePageContext.Provider value={isActivePageMain}>
             <Routes>
               <Route
-                path="/news-explorer-frontend/"
+                path="/"
                 element={
                   <>
                     <Header
@@ -230,7 +230,7 @@ function App() {
                 }
               />
               <Route
-                path="/news-explorer-frontend/saved-news/"
+                path="/saved-news/"
                 element={
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
                     <>
