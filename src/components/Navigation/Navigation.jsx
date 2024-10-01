@@ -61,21 +61,25 @@ function Navigation({
           isHamburgerMenuActive ? "" : "navigation__hamburger-menu_type_hidden"
         }`}
       >
-        <div className="hamburger__menu-bar">
-          <NavLink to="/" className="hamburger-menu__title">
-            NewsExplorer
-          </NavLink>
-          <button
-            className="hamburger-menu__close"
-            onClick={handleHamburgerMenuClick}
-          />
+        <div className="hamburger-menu__bar">
+          <div className="hamburger-menu__content">
+            <NavLink to="/" className="hamburger-menu__title">
+              NewsExplorer
+            </NavLink>
+            <button
+              className="hamburger-menu__close"
+              onClick={handleHamburgerMenuClick}
+            />
+          </div>
         </div>
         <NavLink to="/" className="hamburger-menu__home">
           Home
         </NavLink>
         <NavLink
           to="/saved-news"
-          className={`${savedNews}hamburger-menu__saved-news`}
+          className={`${savedNews}hamburger-menu__saved-news ${
+            isLoggedIn ? "" : "hamburger-menu__saved-news_type_hidden"
+          }`}
         >
           Saved Articles
         </NavLink>

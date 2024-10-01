@@ -1,12 +1,5 @@
 import { fromDate, toDate } from "./constants";
-
-function request(url, options) {
-  return fetch(url, options).then(parseRequest);
-}
-
-function parseRequest(res) {
-  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-}
+import { request } from "./api";
 
 export const getNews = (keyword, newsAPIKey) => {
   return request(

@@ -10,16 +10,18 @@ function Header({
 }) {
   return (
     <header className="header">
-      <Link to="/" className="header__title">
-        NewsExplorer
-      </Link>
-      <Navigation
-        savedNews=""
-        openPopup={openPopup}
-        handleHamburgerMenuClick={handleHamburgerMenuClick}
-        isHamburgerMenuActive={isHamburgerMenuActive}
-        handleLogOutClick={handleLogOutClick}
-      />
+      <div className="header__content">
+        <Link to="/" className="header__title">
+          NewsExplorer
+        </Link>
+        <Navigation
+          savedNews=""
+          openPopup={openPopup}
+          handleHamburgerMenuClick={handleHamburgerMenuClick}
+          isHamburgerMenuActive={isHamburgerMenuActive}
+          handleLogOutClick={handleLogOutClick}
+        />
+      </div>
     </header>
   );
 }

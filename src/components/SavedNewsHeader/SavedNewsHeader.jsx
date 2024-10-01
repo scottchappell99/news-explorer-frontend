@@ -11,32 +11,44 @@ function SavedNewsHeader({
   handleHamburgerMenuClick,
   isHamburgerMenuActive,
   handleLogOutClick,
+  savedKeywords,
+  userSavedNews,
 }) {
   const userInfo = useContext(UserContext);
 
   return (
     <header className="saved-news-header">
       <div className="saved-news-header__bar">
-        <Link to="/" className="saved-news-header__title">
-          NewsExplorer
-        </Link>
-        <Navigation
-          savedNews="saved-news-"
-          openPopup={openPopup}
-          handleHamburgerMenuClick={handleHamburgerMenuClick}
-          isHamburgerMenuActive={isHamburgerMenuActive}
-          handleLogOutClick={handleLogOutClick}
-        />
+        <div className="saved-news-header__content">
+          <Link to="/" className="saved-news-header__title">
+            NewsExplorer
+          </Link>
+          <Navigation
+            savedNews="saved-news-"
+            openPopup={openPopup}
+            handleHamburgerMenuClick={handleHamburgerMenuClick}
+            isHamburgerMenuActive={isHamburgerMenuActive}
+            handleLogOutClick={handleLogOutClick}
+          />
+        </div>
       </div>
       <div className="saved-news-header__intro">
         <h2 className="saved-news-header__saved-articles">Saved articles</h2>
-        <p className="saved-news-header__text">
-          {userInfo.name}, you have x saved articles
-        </p>
+        <div className="saved-news-header__text-box">
+          <p className="saved-news-header__text">
+            {`${userInfo.name}, you have ${userSavedNews.length} saved article${
+              userSavedNews[1] ? "s" : ""
+            }`}
+          </p>
+        </div>
         <div className="saved-news-header__keywords">
-          <p className="saved-news-header__keywords-text">By keywords:</p>
+          <p className="saved-news-header__keywords-text">{`By keyword${
+            savedKeywords[1] ? "s" : ""
+          }:`}</p>
           <p className="saved-news-header__keywords-keywords">
-            abc, def, and ghi
+            {`${savedKeywords[0]}${
+              savedKeywords[1] ? `, ${savedKeywords[1]} ` : ""
+            }${savedKeywords[2] ? `, and ${savedKeywords[3]}` : ""}`}
           </p>
         </div>
       </div>

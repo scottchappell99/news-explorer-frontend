@@ -7,6 +7,7 @@ function NewsCardList({
   newsData,
   cardsShown,
   handleShowMoreClick,
+  handleSaveClick,
 }) {
   const newsCardLength = newsData.length - 1;
 
@@ -19,7 +20,13 @@ function NewsCardList({
       <h2 className="news-cards__title">Search results</h2>
       <ul className="news-cards__list">
         {newsData.slice(0, cardsShown).map((item, index) => {
-          return <NewsCard key={index} item={item} />;
+          return (
+            <NewsCard
+              key={index}
+              item={item}
+              handleSaveClick={handleSaveClick}
+            />
+          );
         })}
       </ul>
       <button

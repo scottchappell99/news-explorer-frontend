@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   gap: 42px;
-  margin: 0 104px 0 0;
+  margin: 0;
 }
 
 .navigation__hamburger-menu-button {
@@ -132,7 +132,7 @@
   display: none;
 }
 
-@media screen and (max-width: 1000px) and (min-width: 768px) {
+@media screen and (max-width: 999px) and (min-width: 768px) {
   .navigation {
     margin: 0 40px 0 0;
   }
@@ -224,9 +224,10 @@
   }
 
   .navigation__hamburger-menu {
-    display: block;
-    width: 100vw;
-    height: 230px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
     position: fixed;
     background-color: #1a1b22;
     top: 0;
@@ -234,6 +235,7 @@
     z-index: 9;
     opacity: 1;
     transition: opacity 0.5s linear;
+    align-items: center;
   }
 
   .navigation__hamburger-menu_type_hidden {
@@ -242,12 +244,21 @@
     visibility: collapse;
   }
 
-  .hamburger__menu-bar {
-    display: flex;
+  .hamburger-menu__bar {
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: 56px;
     border-bottom: 3px #c4c4c410 solid;
+    margin: 0 auto;
+  }
+
+  .hamburger-menu__content {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    width: 288px;
+    height: 56px;
+    margin: 0 auto;
   }
 
   .hamburger-menu__title {
@@ -257,7 +268,7 @@
     line-height: calc(24 / 16);
     color: #fff;
     text-decoration: none;
-    margin: 16px 0 16px 16px;
+    margin: 16px 0;
   }
 
   .hamburger-menu__title:hover {
@@ -269,7 +280,7 @@
     width: 24px;
     height: 24px;
     border: none;
-    margin: 16px 16px 16px auto;
+    margin: 16px 0;
   }
 
   .hamburger-menu__close:hover {
@@ -280,11 +291,12 @@
     font-family: "Roboto", Arial, sans-serif;
     font-weight: 500;
     font-size: 18px;
+    width: 288px;
+    height: 56px;
     line-height: calc(56 / 18);
     color: #fff;
     text-decoration: none;
-    margin: 16px auto 0 16px;
-    float: left;
+    margin: 16px auto 0;
   }
 
   .hamburger-menu__saved-news {
@@ -292,16 +304,15 @@
     font-weight: 500;
     font-size: 18px;
     line-height: calc(56 / 18);
+    width: 288px;
+    height: 56px;
     color: #fff;
     text-decoration: none;
-    margin: 16px 16px 0 auto;
-    text-align: right;
-    float: right;
-    display: none;
+    margin: 16px auto 0;
   }
 
-  .saved-news-hamburger-menu__saved-news {
-    display: block;
+  .hamburger-menu__saved-news_type_hidden {
+    display: none;
   }
 
   .hamburger-menu__sign-in {
@@ -315,7 +326,7 @@
     border: 1px solid #fff;
     border-radius: 100px;
     background-color: transparent;
-    margin: 22px 16px 0;
+    margin: 22px auto 24px;
   }
 
   .hamburger-menu__sign-in:hover {
@@ -337,7 +348,10 @@
     border: 1px solid #fff;
     border-radius: 100px;
     background-color: transparent;
-    margin: 22px 16px 0;
+    margin: 22px auto 24px;
+    background: transparent url(../../assets/images/logout.svg);
+    background-position: 95% 50%;
+    background-repeat: no-repeat;
   }
 
   .hamburger-menu__sign-out:hover {

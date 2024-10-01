@@ -18,6 +18,7 @@ import SignUpPopup from "../SignUpPopup/SignUpPopup";
 import SuccessPopup from "../SuccessPopup/SuccessPopup";
 import { registerUser, logInUser, getUserInfo } from "../../utils/auth";
 import { getNews, filterNews } from "../../utils/newsApi";
+import { saveArticle, unsaveArticle } from "../../utils/api";
 
 import { AuthContext } from "../../context/AuthContext";
 import { UserContext } from "../../context/UserContext";
@@ -39,6 +40,9 @@ function App() {
   const [newsData, setNewsData] = useState([]);
   const [cardsShown, setCardsShown] = useState(3);
   const [errorMessage, setErrorMessage] = useState("");
+  const [userSavedNews, setUserSavedNews] = useState([]);
+  const [currentKeyword, setCurrentKeyword] = useState("");
+  const [savedKeywords, setSavedKeywords] = useState([]);
   const location = useLocation();
 
   useEffect(() => {
@@ -139,6 +143,8 @@ function App() {
       .then(() => {
         setIsCardsRendered(true);
         setIsEmptySearch(false);
+        setCurrentKeyword(values.search);
+        setSavedKeywords([...savedKeywords, values.search]);
       })
       .catch((err) => {
         console.error;
@@ -151,6 +157,20 @@ function App() {
 
   const handleShowMoreClick = () => {
     setCardsShown(cardsShown + 3);
+  };
+
+  const handleSaveClick = (article, isSaved) => {
+    !isSaved
+      ? saveArticle(article, currentKeyword)
+          .then((savedArticle) => {
+            setUserSavedNews([...userSavedNews, savedArticle]);
+          })
+          .catch(console.error)
+      : unsaveArticle(article)
+          .then((unsavedArticle) => {
+            setUserSavedNews([userSavedNews.filter(unsavedArticle.id)]);
+          })
+          .catch(console.error);
   };
 
   return (
@@ -184,6 +204,7 @@ function App() {
                       newsData={newsData}
                       cardsShown={cardsShown}
                       handleShowMoreClick={handleShowMoreClick}
+                      handleSaveClick={handleSaveClick}
                     />
                     <About />
                   </>
@@ -200,8 +221,13 @@ function App() {
                         handleHamburgerMenuClick={handleHamburgerMenuClick}
                         isHamburgerMenuActive={isHamburgerMenuActive}
                         handleLogOutClick={handleLogOutClick}
+                        savedKeywords={savedKeywords}
+                        userSavedNews={userSavedNews}
                       />
-                      <SavedNews />
+                      <SavedNews
+                        userSavedNews={userSavedNews}
+                        handleSaveClick={handleSaveClick}
+                      />
                     </>
                   </ProtectedRoute>
                 }

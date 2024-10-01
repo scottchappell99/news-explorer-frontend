@@ -7,7 +7,7 @@ import testImage from "../../assets/images/testimage.png";
 
 import "./NewsCard.css";
 
-function NewsCard({ item }) {
+function NewsCard({ item, handleSaveClick }) {
   const isLoggedIn = useContext(AuthContext);
   const isActivePageMain = useContext(ActivePageContext);
 
@@ -25,9 +25,10 @@ function NewsCard({ item }) {
           isActivePageMain ? "news-card__keyword_type_hidden" : ""
         }`}
       >
-        {/* {keyword} */}
+        {item?.keyword}
       </div>
       <button
+        onClick={() => handleSaveClick(item, true)}
         className={`news-card__delete ${
           isActivePageMain ? "news-card__delete_type_hidden" : ""
         }`}
@@ -40,9 +41,10 @@ function NewsCard({ item }) {
         Remove from saved
       </div>
       <button
+        onClick={() => handleSaveClick(item, false)}
         className={`news-card__save ${
-          isActivePageMain ? "" : "news-card__save_type_hidden"
-        }`}
+          item.isSaved ? "news-card__save_type_saved" : ""
+        } ${isActivePageMain ? "" : "news-card__save_type_hidden"}`}
       />
       <button
         className={`news-card__sign-in ${
@@ -59,7 +61,7 @@ function NewsCard({ item }) {
       <p className="news-card__date">{`${publishedMonthWord} ${publishedDay}, ${publishedYear}`}</p>
       <h3 className="news-card__headline">{item.title}</h3>
       <p className="news-card__blurb">{item.content}</p>
-      <p className="news-card__publication">{item.source.name}</p>
+      <p className="news-card__publication">{item.source?.name}</p>
     </li>
   );
 }

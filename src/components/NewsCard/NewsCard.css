@@ -20,6 +20,7 @@
   padding: 8px 22px;
   background-color: #fff;
   border-radius: 10px;
+  text-transform: capitalize;
 }
 
 .news-card__keyword_type_hidden {
@@ -58,16 +59,20 @@
   line-height: calc(14 / 12);
   color: #000;
   text-align: center;
-  padding: 11px 26px;
+  padding: 12px 26px;
   background-color: #fff;
   border-radius: 10px;
   box-sizing: border-box;
-  opacity: 100%;
+  opacity: 0;
   transition: opacity 0.5s linear;
 }
 
 .news-card__delete-text_type_hidden {
-  opacity: 0%;
+  opacity: 0;
+}
+
+.news-card__delete:hover + .news-card__delete-text {
+  opacity: 1;
 }
 
 .news-card__save {
