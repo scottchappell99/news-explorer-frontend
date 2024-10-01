@@ -7,7 +7,7 @@ function parseRequest(res) {
 }
 
 export function saveArticle(article) {
-  return new Promise((res, rej) => {
+  return new Promise((res) => {
     res({
       _id: "0912adsiguodspug",
       content: article.content,
@@ -25,7 +25,7 @@ export function saveArticle(article) {
 }
 
 export function unsaveArticle(article) {
-  return new Promise((res, rej) => {
+  return new Promise((res) => {
     res({
       _id: "0912adsiguodspug",
       content: article.content,

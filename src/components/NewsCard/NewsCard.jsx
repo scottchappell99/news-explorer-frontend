@@ -1,9 +1,7 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 import { AuthContext } from "../../context/AuthContext";
 import { ActivePageContext } from "../../context/ActivePageContext";
-
-import testImage from "../../assets/images/testimage.png";
 
 import "./NewsCard.css";
 

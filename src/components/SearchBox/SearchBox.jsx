@@ -2,8 +2,7 @@ import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 import "./SearchBox.css";
 
 function SearchBox({ handleSearchKeywords }) {
-  const { values, handleChange, errors, isValid, resetForm } =
-    useFormAndValidation();
+  const { values, handleChange, isValid, resetForm } = useFormAndValidation();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();

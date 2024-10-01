@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, useLocation, json } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import { newsAPIKey } from "../../utils/constants";
 import Header from "../Header/Header";
@@ -133,7 +133,7 @@ function App() {
     // deleteToken();
   };
 
-  const handleSearchKeywords = (values, resetForm) => {
+  const handleSearchKeywords = (values) => {
     setIsLoading(true);
     setIsCardsRendered(false);
     setIsEmptySearch(false);
@@ -199,7 +199,7 @@ function App() {
           <ActivePageContext.Provider value={isActivePageMain}>
             <Routes>
               <Route
-                path="/"
+                path="/news-explorer-frontend"
                 element={
                   <>
                     <Header
@@ -230,7 +230,7 @@ function App() {
                 }
               />
               <Route
-                path="/saved-news"
+                path="/news-explorer-frontend/saved-news"
                 element={
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
                     <>
