@@ -2,7 +2,7 @@ import { Navigate } from "react-router-dom";
 
 function ProtectedRoute({ isLoggedIn, children }) {
   if (!isLoggedIn) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/news-explorer-frontend/" replace />;
   }
 
   return children;
