@@ -139,6 +139,10 @@ function App() {
     setIsEmptySearch(false);
     getNews(values.search, newsAPIKey)
       .then((rawData) => filterNews(rawData))
+      .then((filteredNews) => {
+        filteredNews.isSaved = false;
+        return filteredNews;
+      })
       .then((news) => setNewsData(news))
       .then(() => {
         setIsCardsRendered(true);
@@ -159,16 +163,31 @@ function App() {
     setCardsShown(cardsShown + 3);
   };
 
-  const handleSaveClick = (article, isSaved) => {
-    !isSaved
-      ? saveArticle(article, currentKeyword)
+  const handleSaveClick = (article) => {
+    !article.isSaved
+      ? saveArticle(article)
+          .then((data) => {
+            article._id = data._id;
+            article.isSaved = data.isSaved;
+            data.keyword = currentKeyword;
+            return data;
+          })
           .then((savedArticle) => {
             setUserSavedNews([...userSavedNews, savedArticle]);
           })
           .catch(console.error)
       : unsaveArticle(article)
+          .then((data) => {
+            article._id = data._id;
+            article.isSaved = data.isSaved;
+            return data;
+          })
           .then((unsavedArticle) => {
-            setUserSavedNews([userSavedNews.filter(unsavedArticle.id)]);
+            const newUserSavedNews = () =>
+              userSavedNews.filter((article) => {
+                article._id !== unsavedArticle._id;
+              });
+            setUserSavedNews(newUserSavedNews);
           })
           .catch(console.error);
   };

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import { AuthContext } from "../../context/AuthContext";
 import { ActivePageContext } from "../../context/ActivePageContext";
@@ -28,9 +28,11 @@ function NewsCard({ item, handleSaveClick }) {
         {item?.keyword}
       </div>
       <button
-        onClick={() => handleSaveClick(item, true)}
+        onClick={() => handleSaveClick(item)}
         className={`news-card__delete ${
-          isActivePageMain ? "news-card__delete_type_hidden" : ""
+          isActivePageMain && item.isSaved
+            ? "news-card__delete_type_hidden"
+            : ""
         }`}
       />
       <div
@@ -41,7 +43,7 @@ function NewsCard({ item, handleSaveClick }) {
         Remove from saved
       </div>
       <button
-        onClick={() => handleSaveClick(item, false)}
+        onClick={() => handleSaveClick(item)}
         className={`news-card__save ${
           item.isSaved ? "news-card__save_type_saved" : ""
         } ${isActivePageMain ? "" : "news-card__save_type_hidden"}`}

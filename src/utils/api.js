@@ -6,7 +6,7 @@ function parseRequest(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 }
 
-export function saveArticle(article, keyword) {
+export function saveArticle(article) {
   return new Promise((res, rej) => {
     res({
       _id: "0912adsiguodspug",
@@ -19,7 +19,7 @@ export function saveArticle(article, keyword) {
       },
       title: article.title,
       urlToImage: article.urlToImage,
-      keyword: keyword,
+      isSaved: true,
     });
   });
 }
@@ -37,7 +37,7 @@ export function unsaveArticle(article) {
       },
       title: article.title,
       urlToImage: article.urlToImage,
-      keyword: keyword,
+      isSaved: false,
     });
   });
 }

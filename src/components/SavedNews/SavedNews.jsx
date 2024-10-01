@@ -10,7 +10,6 @@ function SavedNews({ userSavedNews, handleSaveClick }) {
   return (
     <ul className="saved__news">
       {userSavedNews.map((item) => {
-        console.log(item);
         return (
           <NewsCard
             key={item._id}
