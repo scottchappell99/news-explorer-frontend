@@ -24,6 +24,30 @@
   padding-right: 104px;
 }
 
+.footer__list {
+  display: flex;
+  list-style-type: none;
+  height: 24px;
+  padding: 0;
+}
+
+.footer__small-box {
+  display: flex;
+  flex-direction: row;
+}
+
+.footer__list-item {
+  padding-right: 40px;
+}
+
+.footer__list-item:nth-of-type(3) {
+  padding-right: 24px;
+}
+
+.footer__list-item:nth-of-type(4) {
+  padding: 0;
+}
+
 .footer__home {
   font-family: "Roboto", Arial, sans-serif;
   font-weight: 400;
@@ -33,7 +57,6 @@
   padding: 0;
   text-decoration: none;
   color: #000;
-  padding-right: 40px;
 }
 
 .footer__tripleten {
@@ -44,7 +67,6 @@
   padding: 0;
   text-decoration: none;
   color: #000;
-  padding-right: 40px;
 }
 
 .footer__link {
@@ -52,10 +74,6 @@
   height: 24px;
   padding: 0;
   margin: 0;
-}
-
-.footer__link:last-of-type {
-  margin-left: 24px;
 }
 
 .footer__github {
@@ -101,7 +119,9 @@
 @media screen and (max-width: 767px) {
   .footer {
     height: 176px;
+    width: 288px;
     flex-direction: column-reverse;
+    margin: 0 auto;
   }
 
   .footer__copyright {
@@ -110,9 +130,10 @@
   }
 
   .footer__box {
+    width: 288px;
     padding: 0;
-    margin: 16px auto 0;
     justify-content: space-between;
+    height: 74px;
   }
 
   .footer__small-box {
@@ -121,7 +142,16 @@
     justify-content: left;
     width: 200px;
     height: 74px;
-    gap: 35px;
+    gap: 31px;
+    padding-right: 16px;
+  }
+
+  .footer__list-item {
+    padding: 0;
+  }
+
+  #github.footer__list-item {
+    padding: 0 24px 0 0;
   }
 
   .footer__home {

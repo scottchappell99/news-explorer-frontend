@@ -11,8 +11,8 @@ function Header({
   return (
     <header className="header">
       <div className="header__content">
-        <Link to="/" className="header__title">
-          NewsExplorer
+        <Link to="/" className="header__title-link">
+          <h1 className="header__title">NewsExplorer</h1>
         </Link>
         <Navigation
           savedNews=""

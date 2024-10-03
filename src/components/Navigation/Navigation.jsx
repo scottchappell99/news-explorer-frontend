@@ -29,7 +29,7 @@ function Navigation({
   };
 
   return (
-    <div className="navigation">
+    <nav className="navigation">
       <button
         className={`${savedNews}navigation__hamburger-menu-button`}
         onClick={handleHamburgerMenuClick}
@@ -100,7 +100,7 @@ function Navigation({
           {userInfo.name}
         </button>
       </div>
-    </div>
+    </nav>
   );
 }
 

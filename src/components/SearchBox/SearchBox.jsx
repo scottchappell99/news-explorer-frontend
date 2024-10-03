@@ -28,7 +28,7 @@ function SearchBox({ handleSearchKeywords }) {
         onChange={handleChange}
         required
       />
-      <button type="submit" className="search__submit" disabled={!isValid}>
+      <button type="submit" className="search__submit">
         Search
       </button>
     </form>

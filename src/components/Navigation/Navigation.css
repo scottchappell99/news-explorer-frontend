@@ -58,6 +58,7 @@
 .navigation__bar_type_hidden {
   position: absolute;
   visibility: hidden;
+  display: none;
 }
 
 .navigation__bar:hover {
@@ -85,6 +86,7 @@
 .navigation__sign-in_type_hidden {
   visibility: hidden;
   position: absolute;
+  display: none;
 }
 
 .navigation__sign-out {
@@ -122,6 +124,7 @@
 .navigation__sign-out_type_hidden {
   visibility: hidden;
   position: absolute;
+  display: none;
 }
 
 .saved-news-navigation__sign-out {
