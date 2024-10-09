@@ -1,0 +1,164 @@
+.footer {
+  max-width: 1440px;
+  width: 100vw;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer__copyright {
+  font-family: "Roboto", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: calc(22 / 16);
+  color: #b6bcbf;
+  margin: 0;
+  padding-left: 104px;
+}
+
+.footer__box {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding-right: 104px;
+}
+
+.footer__list {
+  display: flex;
+  list-style-type: none;
+  height: 24px;
+  padding: 0;
+}
+
+.footer__small-box {
+  display: flex;
+  flex-direction: row;
+}
+
+.footer__list-item {
+  padding-right: 40px;
+}
+
+.footer__list-item:nth-of-type(3) {
+  padding-right: 24px;
+}
+
+.footer__list-item:nth-of-type(4) {
+  padding: 0;
+}
+
+.footer__home {
+  font-family: "Roboto", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: calc(24 / 18);
+  border: none;
+  padding: 0;
+  text-decoration: none;
+  color: #000;
+}
+
+.footer__tripleten {
+  font-family: "Roboto", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: calc(24 / 18);
+  padding: 0;
+  text-decoration: none;
+  color: #000;
+}
+
+.footer__link {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__github {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin: 0;
+  background: no-repeat url(../../assets/images/github.svg);
+  border: none;
+}
+
+.footer__github:hover {
+  cursor: pointer;
+}
+
+.footer__facebook {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin: 0;
+  background: no-repeat url(../../assets/images/facebook.svg);
+  border: none;
+}
+
+.footer__facebook:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) and (min-width: 768px) {
+  .footer {
+    height: 64px;
+  }
+
+  .footer__copyright {
+    padding-left: 40px;
+  }
+
+  .footer__box {
+    padding-right: 40px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footer {
+    height: 176px;
+    width: 288px;
+    flex-direction: column-reverse;
+    margin: 0 auto;
+  }
+
+  .footer__copyright {
+    padding: 0;
+    margin: 38px auto 22px;
+  }
+
+  .footer__box {
+    width: 288px;
+    padding: 0;
+    justify-content: space-between;
+    height: 74px;
+  }
+
+  .footer__small-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    width: 200px;
+    height: 74px;
+    gap: 31px;
+    padding-right: 16px;
+  }
+
+  .footer__list-item {
+    padding: 0;
+  }
+
+  #github.footer__list-item {
+    padding: 0 24px 0 0;
+  }
+
+  .footer__home {
+    padding: 0;
+  }
+
+  .footer__tripleten {
+    padding: 0;
+  }
+}
