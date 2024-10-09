@@ -20,8 +20,8 @@ function SavedNewsHeader({
     <header className="saved-news-header">
       <div className="saved-news-header__bar">
         <div className="saved-news-header__content">
-          <Link to="/" className="saved-news-header__title">
-            NewsExplorer
+          <Link to="/" className="saved-news-header__title-link">
+            <h1 className="saved-news-header__title">NewsExplorer</h1>
           </Link>
           <Navigation
             savedNews="saved-news-"

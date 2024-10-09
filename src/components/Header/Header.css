@@ -21,16 +21,16 @@
   text-decoration: none;
 }
 
-.header__title:hover {
-  cursor: pointer;
-}
-
 .header__title {
   font-family: "Roboto Slab", "Times New Roman", serif;
   font-weight: 700;
   font-size: 20px;
   line-height: calc(24 / 20);
   margin: 0;
+}
+
+.header__title:hover {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1279px) and (min-width: 1000px) {
