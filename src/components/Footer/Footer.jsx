@@ -5,7 +5,7 @@ import "./Footer.css";
 function Footer() {
   return (
     <footer className="footer">
-      <p className="footer__copyright">© 2024 Supersite, Powered by News API</p>
+      <p className="footer__copyright">© 2025 Supersite, Powered by News API</p>
       <nav className="footer__box">
         <ul className="footer__list">
           <div className="footer__small-box">
