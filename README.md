@@ -11,4 +11,4 @@ The project has a few widths that it is configured to work between.
 
 I currently am using a placeholder image in place of an image of myself. I plan to take a few pictures to use soon. Otherwise, I believe the project works as it should without any back end. The back end will come soon.
 
-Currently, the project can be found at [NewsExplorer](https://news-explorer.punked.us/).
+Currently, the project can be found at [NewsExplorer](https://explorenews.my.to/).
