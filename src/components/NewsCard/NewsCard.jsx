@@ -5,7 +5,7 @@ import { ActivePageContext } from "../../context/ActivePageContext";
 
 import "./NewsCard.css";
 
-function NewsCard({ item, handleSaveClick }) {
+function NewsCard({ item, handleSaveClick, handleDeleteClick }) {
   const isLoggedIn = useContext(AuthContext);
   const isActivePageMain = useContext(ActivePageContext);
 
@@ -26,7 +26,11 @@ function NewsCard({ item, handleSaveClick }) {
         {item?.keyword}
       </div>
       <button
-        onClick={() => handleSaveClick(item)}
+        onClick={() =>
+          isActivePageMain && item.isSaved
+            ? handleSaveClick(item)
+            : handleDeleteClick(item)
+        }
         className={`news-card__delete ${
           isActivePageMain && item.isSaved
             ? "news-card__delete_type_hidden"

@@ -18,7 +18,8 @@ import SignUpPopup from "../SignUpPopup/SignUpPopup";
 import SuccessPopup from "../SuccessPopup/SuccessPopup";
 import { registerUser, logInUser, getUserInfo } from "../../utils/auth";
 import { getNews, filterNews } from "../../utils/newsApi";
-import { saveArticle, unsaveArticle } from "../../utils/api";
+import { getArticles, saveArticle, unsaveArticle } from "../../utils/api";
+import { setToken, getToken, deleteToken } from "../../utils/token";
 
 import { AuthContext } from "../../context/AuthContext";
 import { UserContext } from "../../context/UserContext";
@@ -114,9 +115,9 @@ function App() {
     logInUser(values)
       .then((data) => {
         if (data.token) {
-          // setToken(data.token);
+          setToken(data.token);
           getUserInfo(data.token).then((user) => {
-            setUserInfo(user.data);
+            setUserInfo(user);
             setIsLoggedIn(true);
           });
         }
@@ -130,7 +131,7 @@ function App() {
   const handleLogOutClick = () => {
     setIsLoggedIn(false);
     setUserInfo({});
-    // deleteToken();
+    deleteToken();
   };
 
   const handleSearchKeywords = (values) => {
@@ -148,7 +149,6 @@ function App() {
         setIsCardsRendered(true);
         setIsEmptySearch(false);
         setCurrentKeyword(values.search);
-        setSavedKeywords([...savedKeywords, values.search]);
       })
       .catch((err) => {
         console.error;
@@ -164,11 +164,13 @@ function App() {
   };
 
   const handleSaveClick = (article) => {
+    const token = getToken();
+    article.keyword = currentKeyword;
     !article.isSaved
-      ? saveArticle(article)
+      ? saveArticle(article, token)
           .then((data) => {
             article._id = data._id;
-            article.isSaved = data.isSaved;
+            article.isSaved = true;
             data.keyword = currentKeyword;
             return data;
           })
@@ -176,10 +178,10 @@ function App() {
             setUserSavedNews([...userSavedNews, savedArticle]);
           })
           .catch(console.error)
-      : unsaveArticle(article)
+      : unsaveArticle(article, token)
           .then((data) => {
             article._id = data._id;
-            article.isSaved = data.isSaved;
+            article.isSaved = false;
             return data;
           })
           .then((unsavedArticle) => {
@@ -191,6 +193,65 @@ function App() {
           })
           .catch(console.error);
   };
+
+  const handleDeleteClick = (article) => {
+    const token = getToken();
+    unsaveArticle(article, token)
+      .then((data) => {
+        article._id = data._id;
+        article.isSaved = false;
+        return data;
+      })
+      .then((unsavedArticle) => {
+        const newUserSavedNews = () =>
+          userSavedNews.filter((article) => {
+            article._id !== unsavedArticle._id;
+          });
+        setUserSavedNews(newUserSavedNews);
+      })
+      .catch(console.error);
+  };
+
+  useEffect(() => {
+    const jwt = getToken();
+
+    if (!jwt) {
+      return;
+    }
+
+    getArticles(jwt)
+      .then(setSavedKeywords([]))
+      .then((articles) => {
+        articles.forEach((article) => {
+          article.content = article.text;
+          article.publishedAt = article.date;
+          article.url = article.link;
+          article.urlToImage = article.image;
+          setSavedKeywords((savedKeywords) => [
+            ...savedKeywords,
+            article.keyword,
+          ]);
+          console.log(savedKeywords);
+        });
+        setUserSavedNews(articles);
+      })
+      .catch(console.error);
+  }, [isActivePageMain]);
+
+  useEffect(() => {
+    const jwt = getToken();
+
+    if (!jwt) {
+      return;
+    }
+
+    getUserInfo(jwt)
+      .then((user) => {
+        setUserInfo(user);
+        setIsLoggedIn(true);
+      })
+      .catch(console.error);
+  }, []);
 
   return (
     <div className="app">
@@ -246,6 +307,7 @@ function App() {
                       <SavedNews
                         userSavedNews={userSavedNews}
                         handleSaveClick={handleSaveClick}
+                        handleDeleteClick={handleDeleteClick}
                       />
                     </>
                   </ProtectedRoute>

@@ -47,8 +47,14 @@ function SavedNewsHeader({
           }:`}</p>
           <p className="saved-news-header__keywords-keywords">
             {`${savedKeywords[0]}${
-              savedKeywords[1] ? `, ${savedKeywords[1]} ` : ""
-            }${savedKeywords[2] ? `, and ${savedKeywords[3]}` : ""}`}
+              savedKeywords[1]
+                ? `${savedKeywords[2] ? ", " : " and "} ${savedKeywords[1]}`
+                : ""
+            }${
+              savedKeywords[2]
+                ? `, ${savedKeywords[3] ? "" : "and"} ${savedKeywords[2]}`
+                : ""
+            }${savedKeywords[3] ? " and more" : ""}`}
           </p>
         </div>
       </div>

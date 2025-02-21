@@ -1,7 +1,7 @@
 import "./SavedNews.css";
 import NewsCard from "../NewsCard/NewsCard";
 
-function SavedNews({ userSavedNews, handleSaveClick }) {
+function SavedNews({ userSavedNews, handleSaveClick, handleDeleteClick }) {
   return (
     <ul className="saved__news">
       {userSavedNews.map((item) => {
@@ -10,6 +10,7 @@ function SavedNews({ userSavedNews, handleSaveClick }) {
             key={item._id}
             item={item}
             handleSaveClick={handleSaveClick}
+            handleDeleteClick={handleDeleteClick}
           />
         );
       })}

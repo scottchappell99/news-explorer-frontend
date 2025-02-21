@@ -1,37 +1,37 @@
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.explorenews.my.to"
+    : "http://localhost:3002";
+
+import { request } from "./api";
+
 const registerUser = ({ email, password, name }) => {
-  return new Promise((res) => {
-    res({
-      data: {
-        email: email,
-        password: password,
-        name: name,
-      },
-    });
+  return request(`${baseUrl}/signup`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password, name }),
   });
 };
 
 const logInUser = ({ email, password }) => {
-  return new Promise((res) => {
-    res({
-      token: "a fake token",
-      data: {
-        email: email,
-        password: password,
-      },
-    });
+  return request(`${baseUrl}/signin`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password }),
   });
 };
 
 const getUserInfo = (token) => {
-  return new Promise((res) => {
-    res({
-      data: {
-        token: token,
-        name: "Scott",
-        email: "fakeemail@email.com",
-        id: "anid",
-      },
-    });
+  return request(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
   });
 };
 
