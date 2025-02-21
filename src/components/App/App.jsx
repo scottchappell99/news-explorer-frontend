@@ -60,7 +60,9 @@ function App() {
   useEffect(() => {
     if (!location) return;
     const handleChangeActivePage = () => {
-      location.pathname === "/" && setIsActivePageMain(true);
+      location.pathname === "/" &&
+        setIsActivePageMain(true) &&
+        setIsCardsRendered(false);
       location.pathname === "/saved-news" && setIsActivePageMain(false);
     };
     window.addEventListener("click", handleChangeActivePage);
@@ -141,7 +143,14 @@ function App() {
     getNews(values.search, newsAPIKey)
       .then((rawData) => filterNews(rawData))
       .then((filteredNews) => {
-        filteredNews.isSaved = false;
+        filteredNews.forEach((filteredArticle) => {
+          const articleUrl = (element) => filteredArticle.url === element.url;
+          if (userSavedNews.some(articleUrl)) {
+            filteredArticle.isSaved = true;
+          } else {
+            filteredArticle.isSaved = false;
+          }
+        });
         return filteredNews;
       })
       .then((news) => setNewsData(news))
@@ -196,10 +205,10 @@ function App() {
 
   const handleDeleteClick = (article) => {
     const token = getToken();
+    article.isSaved = false;
     unsaveArticle(article, token)
       .then((data) => {
         article._id = data._id;
-        article.isSaved = false;
         return data;
       })
       .then((unsavedArticle) => {
@@ -231,12 +240,11 @@ function App() {
             ...savedKeywords,
             article.keyword,
           ]);
-          console.log(savedKeywords);
         });
         setUserSavedNews(articles);
       })
       .catch(console.error);
-  }, [isActivePageMain]);
+  }, [isActivePageMain, isCardsRendered]);
 
   useEffect(() => {
     const jwt = getToken();
