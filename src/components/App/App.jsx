@@ -57,13 +57,38 @@ function App() {
     };
   }, [activePopup]);
 
+  const retrieveArticles = () => {
+    const jwt = getToken();
+
+    if (!jwt) {
+      return;
+    }
+
+    getArticles(jwt)
+      .then(setUserSavedNews([]))
+      .then(setSavedKeywords([]))
+      .then((articles) => {
+        articles.forEach((article) => {
+          article.content = article.text;
+          article.publishedAt = article.date;
+          article.url = article.link;
+          article.urlToImage = article.image;
+          setSavedKeywords((savedKeywords) => [
+            ...savedKeywords,
+            article.keyword,
+          ]);
+        });
+        setUserSavedNews(articles);
+      })
+      .catch(console.error);
+  };
+
   useEffect(() => {
     if (!location) return;
     const handleChangeActivePage = () => {
-      location.pathname === "/" &&
-        setIsActivePageMain(true) &&
-        setIsCardsRendered(false);
+      location.pathname === "/" && setIsActivePageMain(true);
       location.pathname === "/saved-news" && setIsActivePageMain(false);
+      location.pathname === "/saved-news" && setIsCardsRendered(false);
     };
     window.addEventListener("click", handleChangeActivePage);
   }, [location]);
@@ -183,67 +208,40 @@ function App() {
             data.keyword = currentKeyword;
             return data;
           })
-          .then((savedArticle) => {
-            setUserSavedNews([...userSavedNews, savedArticle]);
+          .then(() => {
+            retrieveArticles();
           })
           .catch(console.error)
-      : unsaveArticle(article, token)
-          .then((data) => {
-            article._id = data._id;
-            article.isSaved = false;
-            return data;
-          })
-          .then((unsavedArticle) => {
-            const newUserSavedNews = () =>
-              userSavedNews.filter((article) => {
-                article._id !== unsavedArticle._id;
-              });
-            setUserSavedNews(newUserSavedNews);
-          })
-          .catch(console.error);
+      : userSavedNews.forEach((userArticle) => {
+          if (userArticle.url === article.url) {
+            unsaveArticle(userArticle, token)
+              .then((data) => {
+                article.isSaved = false;
+                return data;
+              })
+              .then(() => {
+                retrieveArticles();
+              })
+              .catch(console.error);
+          }
+        });
   };
 
   const handleDeleteClick = (article) => {
     const token = getToken();
-    article.isSaved = false;
     unsaveArticle(article, token)
       .then((data) => {
-        article._id = data._id;
+        article.isSaved = false;
         return data;
       })
-      .then((unsavedArticle) => {
-        const newUserSavedNews = () =>
-          userSavedNews.filter((article) => {
-            article._id !== unsavedArticle._id;
-          });
-        setUserSavedNews(newUserSavedNews);
+      .then(() => {
+        retrieveArticles();
       })
       .catch(console.error);
   };
 
   useEffect(() => {
-    const jwt = getToken();
-
-    if (!jwt) {
-      return;
-    }
-
-    getArticles(jwt)
-      .then(setSavedKeywords([]))
-      .then((articles) => {
-        articles.forEach((article) => {
-          article.content = article.text;
-          article.publishedAt = article.date;
-          article.url = article.link;
-          article.urlToImage = article.image;
-          setSavedKeywords((savedKeywords) => [
-            ...savedKeywords,
-            article.keyword,
-          ]);
-        });
-        setUserSavedNews(articles);
-      })
-      .catch(console.error);
+    retrieveArticles();
   }, [isActivePageMain, isCardsRendered]);
 
   useEffect(() => {
