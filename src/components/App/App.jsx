@@ -86,12 +86,22 @@ function App() {
   useEffect(() => {
     if (!location) return;
     const handleChangeActivePage = () => {
-      location.pathname === "/" && setIsActivePageMain(true);
-      location.pathname === "/saved-news" && setIsActivePageMain(false);
-      location.pathname === "/saved-news" && setIsCardsRendered(false);
+      if (window.location.pathname === "/") {
+        setIsActivePageMain(true);
+      } else if (window.location.pathname === "/saved-news") {
+        setIsActivePageMain(false);
+      }
     };
     window.addEventListener("click", handleChangeActivePage);
   }, [location]);
+
+  useEffect(() => {
+    if (isActivePageMain) {
+      return;
+    } else if (!isActivePageMain) {
+      setIsCardsRendered(false);
+    }
+  }, [isActivePageMain]);
 
   const handleSignInPopup = () => {
     setIsHamburgerMenuActive(false);
@@ -115,11 +125,6 @@ function App() {
     activePopup === "sign-up" && setActivePopup("sign-in");
     activePopup === "success" && setActivePopup("sign-in");
   };
-
-  // const handleActivePageChange = () => {
-  //   isActivePageMain && setIsActivePageMain(false);
-  //   !isActivePageMain && setIsActivePageMain(true);
-  // };
 
   const handleHamburgerMenuClick = () => {
     setIsHamburgerMenuActive(!isHamburgerMenuActive);
