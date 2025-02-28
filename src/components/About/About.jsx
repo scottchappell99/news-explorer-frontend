@@ -18,7 +18,8 @@ function About() {
       <p className="about__text">
         Scott has learned through TripleTen, which is a bootcamp for software
         development. He has completed a slate of projects for TripleTen, which
-        can be seen at his github, below.
+        can be seen at his{" "}
+        <a href="https://github.com/scottchappell99">github</a>.
       </p>
     </aside>
   );
